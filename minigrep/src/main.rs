@@ -10,6 +10,10 @@ fn main() {
         process::exit(1);
     });
 
+    run(config);
+}
+
+fn run(config: Config) {
     println!("Searching for {} in {}", config.query, config.filename);
 
     let contents =
