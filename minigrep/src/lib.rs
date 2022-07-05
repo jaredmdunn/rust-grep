@@ -19,10 +19,12 @@ impl Config {
 }
 
 pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
-    println!("Searching for {} in {}", config.query, config.filename);
+    let contents = fs::read_to_string(config.filename)?;
 
-    let contents =
-        fs::read_to_string(config.filename).expect("Something went wrong reading the file");
+    for line in search(&config.query, &contents) {
+        println!("{}", line);
+    }
+
     Ok(())
 }
 
